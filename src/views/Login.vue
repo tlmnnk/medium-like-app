@@ -19,6 +19,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import { Notification } from 'element-ui'
 
 export default {
   name: 'Login',
@@ -39,7 +40,7 @@ export default {
     // add form rules
     loginFormRules: {
       email: [
-        { required: true, type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change'] }
+        { required: true, type: 'email', message: 'Please input a valid email', trigger: ['blur', 'change'] }
       ],
       password: [
         { required: true, validator: passValidator, trigger: 'blur' }
@@ -52,7 +53,7 @@ export default {
   },
   methods: {
     ...mapActions('auth', ['login']),
-    submitForm(formName) {
+    async submitForm(formName) {
       this.$refs[formName].validate(valid => {
          console.log(valid);
           if (valid) {
@@ -61,10 +62,18 @@ export default {
             return false;
           }
       })
-      this.login({ email: this.loginForm.email, password: this.loginForm.password });
+      await this.login({ email: this.loginForm.email, password: this.loginForm.password });
+      if (this.getErrors) {
+        this.errorMessages()
+      } else {
+        this.$router.push({name: 'home'})
+      }
     },
     resetForm(formName) {
       this.$refs[formName].resetFields()
+    },
+    errorMessages() {
+      Notification({title: 'Error', message: 'Email or Password is incorrect', type: 'error', closable: true, duration: 5000})
     }
   }
 }

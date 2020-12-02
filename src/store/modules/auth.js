@@ -16,12 +16,12 @@ export default {
     [TOGGLE_SUBMIT](state, payload) {
       state.isSubmitting = payload
     },
-    [REGISTER_SUCCESS || LOGIN_SUCCESS](state, user) {
+    [REGISTER_SUCCESS](state, user) {
       state.user = user
       state.errors = null
       state.isLoggedIn = true
     },
-    [REGISTER_FAILURE || LOGIN_FAILURE](state, errors) {
+    [REGISTER_FAILURE](state, errors) {
       state.errors = errors
     }
   },

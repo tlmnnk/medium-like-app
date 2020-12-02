@@ -48,7 +48,7 @@ export default {
       ],
       email: [
           { required: true, message: 'Please input email address', trigger: 'blur' },
-          { type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change'] }
+          { type: 'email', message: 'Please input a valid email', trigger: ['blur', 'change'] }
       ],
       password: [
           { validator: passValidator, trigger: 'blur' }

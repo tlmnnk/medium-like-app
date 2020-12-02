@@ -2,7 +2,7 @@ import mutations from '../mutations'
 import authApi from '../../services/auth'
 import localStorageAdapter from '../../helpers/localStorageAdapter'
 
-const { TOGGLE_REG, REGISTER_SUCCESS, REGISTER_FAILURE } = mutations;
+const { TOGGLE_SUBMIT, REGISTER_SUCCESS, REGISTER_FAILURE, LOGIN_SUCCESS, LOGIN_FAILURE } = mutations;
 
 export default {
   namespaced: true,
@@ -13,14 +13,15 @@ export default {
     isLoggedIn: null
   },
   mutations: {
-    [TOGGLE_REG](state, payload) {
+    [TOGGLE_SUBMIT](state, payload) {
       state.isSubmitting = payload
     },
-    [REGISTER_SUCCESS](state, user) {
+    [REGISTER_SUCCESS || LOGIN_SUCCESS](state, user) {
       state.user = user
+      state.errors = null
       state.isLoggedIn = true
     },
-    [REGISTER_FAILURE](state, errors) {
+    [REGISTER_FAILURE || LOGIN_FAILURE](state, errors) {
       state.errors = errors
     }
   },
@@ -30,10 +31,10 @@ export default {
   },
   actions: {
     toggleRegStart({ commit }, payload) {
-      commit(TOGGLE_REG, payload)
+      commit(TOGGLE_SUBMIT, payload)
     },
     async register({commit}, { username, email, password }) {
-      commit(TOGGLE_REG, true)
+      commit(TOGGLE_SUBMIT, true)
       try {
         const res = await authApi.register({ username, email, password })
         if (res.status === 200) {
@@ -44,7 +45,21 @@ export default {
         console.log(error.response.data.errors);
         commit(REGISTER_FAILURE, error.response.data.errors)
       }
-      commit(TOGGLE_REG, false)
+      commit(TOGGLE_SUBMIT, false)
+    },
+    async login({commit}, creds) {
+      commit(TOGGLE_SUBMIT, true)
+      try {
+        const res = await authApi.login(creds)
+        if (res.status === 200) {
+          commit(LOGIN_SUCCESS, res.data.user)
+          localStorageAdapter.set('jwtToken', res.data.user.token)
+        }
+      } catch (error) {
+        console.log(error.response.data.errors)
+        commit(LOGIN_FAILURE, error.response.data.errors)
+      }
+      commit(TOGGLE_SUBMIT, false)
     }
   }
 }

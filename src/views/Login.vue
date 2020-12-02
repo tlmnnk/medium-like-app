@@ -10,7 +10,7 @@
         <el-input type="password" v-model="loginForm.password" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitForm()">Submit</el-button>
+        <el-button type="primary" @click="submitForm('loginForm')" :disabled="isSubmitting">Submit</el-button>
         <el-button @click="resetForm('loginForm')">Reset</el-button>
       </el-form-item>
 </el-form>
@@ -18,18 +18,50 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   name: 'Login',
-  data: () => ({
-  loginForm: {
-    email: '',
-    password: ''
+  data: () => {
+    const passValidator = (rule, value, callback) => {
+    if (value === '') {
+          callback(new Error('Please input the password'));
+        } else {
+          callback()
+        }
+    }
+    return {
+    loginForm: {
+      email: '',
+      password: ''
+    },
+    // TODO:
+    // add form rules
+    loginFormRules: {
+      email: [
+        { required: true, type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change'] }
+      ],
+      password: [
+        { required: true, validator: passValidator, trigger: 'blur' }
+      ]
+    }
+    }
   },
-  loginFormRules: {}
-  }),
+  computed: {
+    ...mapGetters('auth', ['isSubmitting', 'getErrors'])
+  },
   methods: {
-    submitForm() {
-      console.log(this.loginForm.email, this.loginForm.password);
+    ...mapActions('auth', ['login']),
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+         console.log(valid);
+          if (valid) {
+            // this.register(this.signup)
+          } else {
+            return false;
+          }
+      })
+      this.login({ email: this.loginForm.email, password: this.loginForm.password });
     },
     resetForm(formName) {
       this.$refs[formName].resetFields()

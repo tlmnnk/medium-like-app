@@ -74,8 +74,6 @@ export default {
         if (this.isFormValid) {
           await this.register(this.signup)
           if (this.getErrors) {
-            // TODO:
-            // notification errros
             this.errorMessages()
           } else {
             this.$router.push({name: 'home'})

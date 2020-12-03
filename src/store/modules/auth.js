@@ -27,7 +27,9 @@ export default {
   },
   getters: {
     isSubmitting: ({ isSubmitting }) => isSubmitting,
-    getErrors: ({ errors }) => errors
+    getErrors: ({ errors }) => errors,
+    getLogin: ({ user }) => user.name,
+    getIsLoggedIn: ({ isLoggedIn }) => isLoggedIn
   },
   actions: {
     toggleRegStart({ commit }, payload) {

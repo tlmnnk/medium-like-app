@@ -9,11 +9,19 @@
 
 <script>
 import Topbar from './components/Topbar'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'App',
   components: {
     Topbar
+  },
+  methods: {
+    ...mapActions('auth', ['getCurrentUser'])
+  },
+  mounted() {
+    console.log('hello app');
+    this.getCurrentUser()
   }
 }
 </script>

@@ -76,7 +76,7 @@ export default {
           if (this.getErrors) {
             this.errorMessages()
           } else {
-            this.$router.push({name: 'home'})
+            this.$router.push({name: 'Home'})
           }
         }
     },

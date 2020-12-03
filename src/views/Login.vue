@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="login sign-up">
     <h2>Sign In</h2>
     <h3><router-link to="/signup">Need an account?</router-link></h3>
     <el-form :model="loginForm" status-icon :rules="loginFormRules" ref="loginForm" label-position="top" label-width="120px" class="login-form">
@@ -66,7 +66,7 @@ export default {
       if (this.getErrors) {
         this.errorMessages()
       } else {
-        this.$router.push({name: 'home'})
+        this.$router.push({name: 'Home'})
       }
     },
     resetForm(formName) {

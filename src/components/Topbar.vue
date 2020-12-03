@@ -1,8 +1,8 @@
 <template>
   <nav class="nav">
-    <router-link class="nav__brand" to="{name: '/home'}"><h1>Medium-like-app</h1></router-link>
+    <router-link class="nav__brand" :to="{name: 'globalFeed'}"><h1>Medium-like-app</h1></router-link>
     <el-menu v-if="getIsLoggedIn" :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
-      <el-menu-item index="Home">
+      <el-menu-item index="globalFeed">
          <router-link class="nav__link" to="/"><i class="el-icon-s-home"></i>Home</router-link>
       </el-menu-item>
         <el-menu-item index="Newpost">
@@ -18,7 +18,7 @@
         </el-menu-item>
     </el-menu>
       <el-menu v-else :default-active="activeIndex" class="el-menu-demo" mode="horizontal" >
-        <el-menu-item index="Home">
+        <el-menu-item index="globalFeed">
          <router-link class="nav__link" to="/"><i class="el-icon-s-home"></i>Home</router-link>
         </el-menu-item>
         <el-menu-item index="Login">

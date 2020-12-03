@@ -66,7 +66,7 @@ export default {
       if (this.getErrors) {
         this.errorMessages()
       } else {
-        this.$router.push({name: 'Home'})
+        this.$router.push({name: 'globalFeed'})
       }
     },
     resetForm(formName) {

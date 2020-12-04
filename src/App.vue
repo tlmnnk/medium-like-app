@@ -20,7 +20,6 @@ export default {
     ...mapActions('auth', ['getCurrentUser'])
   },
   mounted() {
-    console.log('hello app');
     this.getCurrentUser()
   }
 }
@@ -37,6 +36,6 @@ export default {
 .container {
   padding: 0 20px;
   margin: 0 auto;
-  max-width: 920px;
+  max-width: 1140px;
 }
 </style>

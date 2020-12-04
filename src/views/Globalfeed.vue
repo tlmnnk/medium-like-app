@@ -1,10 +1,6 @@
 <template>
   <div class="home">
     BANNER
-    <el-row :gutter="20">
-      <el-col :span="18"><div class="grid-content bg-purple-dark"></div></el-col>
-      <el-col :span="6"><div class="grid-content bg-purple-dark"></div></el-col>
-    </el-row>
     <Feed :api-url="apiUrl"/>
   </div>
 </template>

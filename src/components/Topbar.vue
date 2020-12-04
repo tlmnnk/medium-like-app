@@ -36,13 +36,9 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Topbar',
-    updated() {
-    console.log(this.$router.history.current);
-  },
   computed: {
     ...mapGetters('auth', ['getLogin', 'getIsLoggedIn']),
     activeIndex() {
-      console.log(this.$router.history.current.name)
       return this.$router.history.current.name
     }
   }

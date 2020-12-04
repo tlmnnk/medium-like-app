@@ -17,6 +17,36 @@ const routes = [
     component: Globalfeed
   },
   {
+    path: '/feed',
+    name: 'yourFeed',
+    component: Globalfeed
+  },
+  {
+    path: '/tag/:slug',
+    name: 'tag',
+    component: Globalfeed
+  },
+  {
+    path: '/article/new',
+    name: 'createArticle',
+    component: Globalfeed
+  },
+  {
+    path: '/article/:slug',
+    name: 'article',
+    component: Globalfeed
+  },
+  {
+    path: '/article/:slug/edit',
+    name: 'editArticle',
+    component: Globalfeed
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    component: Globalfeed
+  },
+  {
     path: '/signup',
     name: 'Signup',
     component: Signup
@@ -27,8 +57,13 @@ const routes = [
     component: Login
   },
   {
-    path: '/user',
+    path: '/profile/:slug',
     name: 'User',
+    component: User
+  },
+  {
+    path: '/profile/:slug/favorites',
+    name: 'userFavorites',
     component: User
   },
   {

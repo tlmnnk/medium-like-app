@@ -6,25 +6,25 @@ const { GET_FEED_START, GET_FEED_FAILURE, GET_FEED_SUCCESS } = mutations
 export default {
   namespaced: true,
   state: {
-    data: null,
+    feedData: null,
     isLoading: false,
     error: null
   },
   mutations: {
     [GET_FEED_START](state) {
       state.isLoading = true
-      state.data = null
+      state.feedData = null
     },
     [GET_FEED_FAILURE](state) {
       state.isLoading = false
     },
     [GET_FEED_SUCCESS](state, data) {
       state.isLoading = false
-      state.data = data
+      state.feedData = data
     }
   },
   getters: {
-    data: ({data}) => data,
+    feedData: ({feedData}) => feedData,
     isLoading: ({isLoading}) => isLoading,
     error: ({error}) => error,
   },
@@ -34,6 +34,7 @@ export default {
       try {
         const res = await feedApi.getFeed(apiUrl)
         if (res.status === 200) {
+          console.log(res.data);
           commit(GET_FEED_SUCCESS, res.data)
         }
       } catch (err) {

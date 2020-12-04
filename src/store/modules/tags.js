@@ -13,14 +13,14 @@ export default {
   mutations: {
     [GET_TAGS_START](state) {
       state.isLoading = true
-      state.feedData = null
+      state.data = null
     },
-    [GET_TAGS_SUCCESS](state) {
+    [GET_TAGS_SUCCESS](state, data) {
       state.isLoading = false
+      state.data = data
     },
-    [GET_TAGS_FAILURE](state, data) {
+    [GET_TAGS_FAILURE](state) {
       state.isLoading = false
-      state.feedData = data
     }
   },
   getters: {

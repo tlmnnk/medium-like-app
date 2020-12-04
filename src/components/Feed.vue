@@ -37,20 +37,31 @@
         <div class="feed-item__tags">TAGS</div>
         <div class="divider"></div>
       </div>
+      <Pagination
+      :total="feedData.articlesCount" 
+      :pageSize="articlesPerPage"
+      :currentPage="currentPage"
+      :url="baseUrl"/>
          </el-col>
       </el-row>
       
     </div>
     <div v-else-if="isLoading">Loading</div>
-    <div>PAGINATION</div>
+    
   </div>
 </template>
 
 <script>
 import { Loading } from 'element-ui';
 import {mapActions, mapGetters} from 'vuex'
+import Pagination from '../components/Pagination'
+import {LIMIT} from '../helpers/vars'
+
 export default {
   name: 'Feed',
+  components: {
+    Pagination
+  },
   props: {
     apiUrl: {
       type: String,
@@ -58,6 +69,7 @@ export default {
     }
   },
   data: ()=>({
+    url: '/tags/dragons',
     loadingInstance: null
   }),
   updated() {
@@ -71,19 +83,31 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('feed', ['feedData', 'isLoading', 'error'])
+    ...mapGetters('feed', ['feedData', 'isLoading', 'error']),
+    articlesPerPage() {
+      return LIMIT
+    },
+    currentPage() {
+      return Number(this.$route.query.page || '1')
+    },
+    baseUrl() {
+      return this.$route.path
+    }
+  },
+  watch: {
+    currentPage() {
+      this.fetchFeed({apiUrl: this.apiUrl, limit: LIMIT, offset: (this.currentPage*LIMIT)-LIMIT})
+      console.log('current page changed');
+    }
   },
   methods: {
     ...mapActions('feed', ['fetchFeed']),
     avatarErrorHandler() {
       return true
-    },
-    getData() {
-      console.log(this.getFeedData);
     }
   },
   mounted() {
-     this.fetchFeed({apiUrl: this.apiUrl})
+     this.fetchFeed({apiUrl: this.apiUrl, limit: LIMIT, offset: (this.currentPage*LIMIT)-LIMIT})
   }
 }
 </script>

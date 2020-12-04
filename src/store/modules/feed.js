@@ -8,7 +8,8 @@ export default {
   state: {
     feedData: null,
     isLoading: false,
-    error: null
+    error: null,
+    currentPage: 1
   },
   mutations: {
     [GET_FEED_START](state) {
@@ -29,10 +30,10 @@ export default {
     error: ({error}) => error,
   },
   actions: {
-    async fetchFeed({commit}, {apiUrl}) {
+    async fetchFeed({commit}, {apiUrl, limit, offset}) {
       commit(GET_FEED_START)
       try {
-        const res = await feedApi.getFeed(apiUrl)
+        const res = await feedApi.getFeed(apiUrl, limit, offset)
         if (res.status === 200) {
           console.log(res.data);
           commit(GET_FEED_SUCCESS, res.data)

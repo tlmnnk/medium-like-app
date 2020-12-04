@@ -92,12 +92,18 @@ export default {
     },
     baseUrl() {
       return this.$route.path
+    },
+    offset() {
+      return ((this.currentPage*LIMIT)-LIMIT)
     }
   },
   watch: {
     currentPage() {
-      this.fetchFeed({apiUrl: this.apiUrl, limit: LIMIT, offset: (this.currentPage*LIMIT)-LIMIT})
-      console.log('current page changed');
+      this.fetchFeed({
+        apiUrl: this.apiUrl,
+        limit: LIMIT, 
+        offset: this.offset
+      })
     }
   },
   methods: {
@@ -107,7 +113,11 @@ export default {
     }
   },
   mounted() {
-     this.fetchFeed({apiUrl: this.apiUrl, limit: LIMIT, offset: (this.currentPage*LIMIT)-LIMIT})
+     this.fetchFeed({
+      apiUrl: this.apiUrl, 
+      limit: LIMIT, 
+      offset: this.offset
+  })
   }
 }
 </script>

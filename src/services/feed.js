@@ -9,6 +9,11 @@ const getFeed = (apiUrl, limit = 10, offset = 0) => {
   })
 }
 
+const getTags = () => {
+  return axios.get('/tags')
+}
+
 export default {
-  getFeed
+  getFeed,
+  getTags
 }

@@ -2,8 +2,6 @@
   <div>
     <div v-if="error">some error</div>
     <div v-else-if="feedData" class="feed__wrapper">
-      <el-row :gutter="20">
-         <el-col :span="18">
       <div class="feed-preview" v-for="(feedItem, index) in feedData.articles" :key="index">
         <div class="feed-item__feed-info">
           <div class="feed-item__userblock">
@@ -42,9 +40,6 @@
       :pageSize="articlesPerPage"
       :currentPage="currentPage"
       :url="baseUrl"/>
-         </el-col>
-      </el-row>
-      
     </div>
     <div v-else-if="isLoading">Loading</div>
     

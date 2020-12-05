@@ -74,7 +74,7 @@ export default {
   updated() {
     if (this.isLoading) {
       this.loadingInstance = Loading.service({
-        target: '.globalFeeed',
+        target: '.feed',
         fullscreen: 'false'
         });
     } else {

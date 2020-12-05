@@ -1,8 +1,9 @@
 <template>
-  <div class="home globalFeeed">
+  <div class="home feed globalFeeed">
     <Banner />
           <el-row :gutter="20">
             <el-col :span="18">
+              <FeedToggler :activeTab="activeTab"/>
               <Feed :api-url="apiUrl"/>
             </el-col>
             <el-col :span="6">
@@ -17,15 +18,19 @@
 import Feed from '../components/Feed'
 import Tags from '../components/Tags'
 import Banner from '../components/Banner'
+import FeedToggler from '../components/FeedToggler'
+
 
 export default {
   name: 'YourFeed',
   components: {
     Feed,
     Tags,
-    Banner
+    Banner,
+    FeedToggler
   },
   data: () => ({
+    activeTab: 'Your feed',
     apiUrl: '/articles/feed'
   })
 }

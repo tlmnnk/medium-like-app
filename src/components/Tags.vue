@@ -1,7 +1,9 @@
 <template>
   <div>
     <div v-if="isLoading" class="tags__loading">Loading...</div>
-    <div v-if="error">got an errord</div>
+    <div v-if="error">
+      <ErrorMessage />
+    </div>
     <div v-if="tagsData" class="tags__block">
       <h3 class="tags__title">Popular tags</h3>
       <div class="tags__block">
@@ -20,9 +22,13 @@
 <script>
 import {mapGetters, mapActions} from 'vuex'
 import { Loading } from 'element-ui'
+import ErrorMessage from '../components/ErrorMessage'
 
 export default {
   name: 'PopularTags',
+  components: {
+    ErrorMessage
+  },
   computed: {
     ...mapGetters('tags', ['isLoading', 'error', 'tagsData'])
   },

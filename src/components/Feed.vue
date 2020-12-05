@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div v-if="error">some error</div>
+    <div v-if="error">
+      <ErrorMessage />
+    </div>
     <div v-else-if="feedData" class="feed__wrapper">
       <div class="feed-preview" v-for="(feedItem, index) in feedData.articles" :key="index">
         <div class="feed-item__feed-info">
@@ -50,12 +52,14 @@
 import { Loading } from 'element-ui';
 import {mapActions, mapGetters} from 'vuex'
 import Pagination from '../components/Pagination'
+import ErrorMessage from '../components/ErrorMessage'
 import {LIMIT} from '../helpers/vars'
 
 export default {
   name: 'Feed',
   components: {
-    Pagination
+    Pagination,
+    ErrorMessage
   },
   props: {
     apiUrl: {

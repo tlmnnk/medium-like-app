@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="isLoading">Loading...</div>
+    <div v-if="isLoading" class="tags__loading">Loading...</div>
     <div v-if="error">got an errord</div>
     <div v-if="tagsData" class="tags__block">
       <h3 class="tags__title">Popular tags</h3>
@@ -19,6 +19,7 @@
 
 <script>
 import {mapGetters, mapActions} from 'vuex'
+import { Loading } from 'element-ui'
 
 export default {
   name: 'PopularTags',
@@ -34,9 +35,19 @@ export default {
   mounted() {
     this.fetchTags()
   },
-  updated() {
-    console.log('tags=', this.tagsData);
-  }
+    updated() {
+    if (this.isLoading) {
+      this.loadingInstance = Loading.service({
+        target: '.tags__loading',
+        fullscreen: 'false'
+        });
+    } else {
+      if (this.loadingInstance) {
+        this.loadingInstance.close()
+        this.loadingInstance = null
+      }
+    }
+  },
 }
 </script>
 
@@ -47,6 +58,10 @@ export default {
   height: 100%;
   text-decoration: none;
   color: rgb(25, 131, 252);
+}
+.tags__loading {
+  widows: 100%;
+  height: 200px;
 }
 .tags__block {
   display: flex;

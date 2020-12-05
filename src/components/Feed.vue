@@ -41,7 +41,7 @@
       :currentPage="currentPage"
       :url="baseUrl"/>
     </div>
-    <div v-else-if="isLoading">Loading</div>
+    <div v-else-if="isLoading" class="feed__loading"></div>
     
   </div>
 </template>
@@ -70,7 +70,7 @@ export default {
   updated() {
     if (this.isLoading) {
       this.loadingInstance = Loading.service({
-        target: 'feed__wrapper',
+        target: '.globalFeeed',
         fullscreen: 'false'
         });
     } else {

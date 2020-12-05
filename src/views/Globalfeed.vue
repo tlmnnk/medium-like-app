@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home globalFeeed">
     <Banner />
           <el-row :gutter="20">
             <el-col :span="18">

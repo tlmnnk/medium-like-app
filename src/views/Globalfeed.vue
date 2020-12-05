@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    BANNER
+    <Banner />
           <el-row :gutter="20">
             <el-col :span="18">
               <Feed :api-url="apiUrl"/>
@@ -16,12 +16,14 @@
 <script>
 import Feed from '../components/Feed'
 import Tags from '../components/Tags'
+import Banner from '../components/Banner'
 
 export default {
   name: 'GlobalFeed',
   components: {
     Feed,
-    Tags
+    Tags,
+    Banner
   },
   data: () => ({
     apiUrl: '/articles'

@@ -19,14 +19,14 @@ import Tags from '../components/Tags'
 import Banner from '../components/Banner'
 
 export default {
-  name: 'GlobalFeed',
+  name: 'YourFeed',
   components: {
     Feed,
     Tags,
     Banner
   },
   data: () => ({
-    apiUrl: '/articles'
+    apiUrl: '/articles/feed'
   })
 }
 </script>

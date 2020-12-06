@@ -40,8 +40,6 @@ export default {
   },
   methods: {
      handleTabClick(tab) {
-       console.log(this.$route.name);
-       console.log(tab.$options.propsData.name);
        switch (tab.$options.propsData.name) {
          case 'globalFeed':
            (this.$route.name !== 'globalFeed') && this.$router.push({name: tab.$options.propsData.name})

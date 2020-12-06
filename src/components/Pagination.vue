@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="feed__pagination">
     <el-pagination
       background
       layout="prev, pager, next"
@@ -46,5 +46,7 @@ export default {
 </script>
 
 <style>
-
+.feed__pagination {
+  margin-top: 25px;
+}
 </style>

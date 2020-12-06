@@ -29,7 +29,7 @@ export default {
     FeedToggler
   },
   data: () => ({
-    activeTab: 'Global feed',
+    activeTab: 'globalFeed',
     apiUrl: '/articles'
   })
 }

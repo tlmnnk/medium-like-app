@@ -1,9 +1,9 @@
 <template>
   <div>
     <el-tabs v-model="getActiveTab" @tab-click="handleTabClick">
-      <el-tab-pane label="Global feed" name="Global feed"></el-tab-pane>
-      <el-tab-pane v-if="getIsLoggedIn" label="Your feed" name="Your feed"></el-tab-pane>
-      <el-tab-pane v-if="tagName" label="tag" name="tag"></el-tab-pane>
+      <el-tab-pane label="Global feed" name="globalFeed"></el-tab-pane>
+      <el-tab-pane v-if="getIsLoggedIn" label="Your feed" name="yourFeed"></el-tab-pane>
+      <el-tab-pane v-if="tagName" :label="tagNameHash" name="tag"></el-tab-pane>
   </el-tabs>
   </div>
 </template>
@@ -33,17 +33,24 @@ export default {
         return this.activeTabData
       },
       set: (value)=> (value)
+    },
+    tagNameHash() {
+      return `#${this.tagName}`
     }
   },
   methods: {
      handleTabClick(tab) {
        console.log(this.$route.name);
+       console.log(tab.$options.propsData.name);
        switch (tab.$options.propsData.name) {
-         case 'Global feed':
-           (this.$route.name === 'yourFeed') && this.$router.push({name: 'globalFeed'})
+         case 'globalFeed':
+           (this.$route.name !== 'globalFeed') && this.$router.push({name: tab.$options.propsData.name})
            break;
-        case 'Your feed':
-          (this.$route.name === 'globalFeed') && this.$router.push({name: 'yourFeed'})
+        case 'yourFeed':
+          (this.$route.name !== 'yourFeed') && this.$router.push({name: tab.$options.propsData.name})
+           break;
+        case 'tag':
+          (this.$route.name !== 'tag') && this.$router.push({name: tab.$options.propsData.name})
            break;
        }
       }

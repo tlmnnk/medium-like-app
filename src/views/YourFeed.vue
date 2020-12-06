@@ -30,7 +30,7 @@ export default {
     FeedToggler
   },
   data: () => ({
-    activeTab: 'Your feed',
+    activeTab: 'yourFeed',
     apiUrl: '/articles/feed'
   })
 }

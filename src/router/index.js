@@ -9,6 +9,7 @@ import Newpost from  '../views/Newpost.vue'
 import Settings from  '../views/Settings.vue'
 import YourFeed from '../views/YourFeed.vue'
 import TagFeed from '../views/TagFeed.vue'
+import Article from '../views/Article.vue'
 
 Vue.use(VueRouter)
 
@@ -36,16 +37,11 @@ const routes = [
   {
     path: '/article/:slug',
     name: 'article',
-    component: Globalfeed
+    component: Article
   },
   {
     path: '/article/:slug/edit',
     name: 'editArticle',
-    component: Globalfeed
-  },
-  {
-    path: '/settings',
-    name: 'settings',
     component: Globalfeed
   },
   {

@@ -1,4 +1,4 @@
-import feedApi from '../../services/feed'
+import articleApi from '../../services/article'
 import mutations from '../mutations'
 
 const { GET_ARTICLE_START, GET_ARTICLE_FAILURE, GET_ARTICLE_SUCCESS } = mutations
@@ -29,13 +29,13 @@ export default {
     error: ({error}) => error,
   },
   actions: {
-    async getArticle({commit}, slug) {
+    async fetchArticle({commit}, {slug}) {
       commit(GET_ARTICLE_START)
       try {
-        const res = await feedApi.getArticle(slug)
+        const res = await articleApi.getArticle(slug)
         if (res.status === 200) {
           console.log(res.data);
-          commit(GET_ARTICLE_SUCCESS, res.data)
+          commit(GET_ARTICLE_SUCCESS, res.data.article)
         }
       } catch (err) {
         commit(GET_ARTICLE_FAILURE)

@@ -2,7 +2,8 @@
   
 <div class="article">
   <div v-if="isLoading">Loading...</div>
-    <div v-if="articleData" class="banner">
+  <div v-if="articleData">
+    <div class="banner">
       <div  class="article__wrapper">
         <h2 class="article__title">{{articleData.author.username}}</h2>
         <div class="article__user-block">
@@ -12,6 +13,7 @@
       </div>
     </div>
     <div class="article__body">{{articleData.body}}</div>
+  </div>
   </div>
 </template>
 
@@ -34,6 +36,9 @@ export default {
   },
   mounted() {
     this.fetchArticle({slug: this.$route.params.slug})
+  },
+  unmounted() {
+    console.log('unmounted');
   }
 }
 </script>
@@ -47,7 +52,7 @@ export default {
   font-size: 36px;
   line-height: 36px;
 }
-.articel__user-block {
+.article__user-block {
   display: flex;
   align-items: center;
 }

@@ -39,6 +39,7 @@ export default {
   computed: {
     ...mapGetters('auth', ['getLogin', 'getIsLoggedIn']),
     activeIndex() {
+      console.log('name', this.$router.history.current.name);
       return this.$router.history.current.name
     }
   }

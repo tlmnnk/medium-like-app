@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div v-if="getIsLoggedIn">
     <div v-if="isMyArticle" class="article__buttons">
       <el-button plain>Edit Article</el-button>
-      <el-button type="danger">Delete Article</el-button>
+      <el-button type="danger" @click="removeArticle">Delete Article</el-button>
     </div>
     <div v-else class="article__buttons">
       <el-button plain>
@@ -14,12 +14,12 @@
         <i v-else class="el-icon-star-off"></i>
         Favorite Article ({{this.articleData.favoritesCount}})
       </el-button>
-      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   name: 'ArticleEditBtn',
@@ -30,12 +30,18 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('auth', ['getLogin']),
+    ...mapGetters('auth', ['getLogin', 'getIsLoggedIn']),
     isMyArticle() {
-      return this.getLogin ===  this.$route.params.slug
+      return this.getLogin ===  this.articleData.author.username
+    }
+  },
+  methods: {
+    ...mapActions('article', ['deleteArticle']),
+    async removeArticle() {
+      await this.deleteArticle({slug: this.articleData.slug})
+      this.$router.push({name: 'globalFeed'})
+    }
   }
-},
-  
 }
 </script>
 

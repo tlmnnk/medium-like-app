@@ -16,8 +16,9 @@ export default {
       state.isLoading = true
       state.feedData = null
     },
-    [GET_FEED_FAILURE](state) {
+    [GET_FEED_FAILURE](state, payload) {
       state.isLoading = false
+      state.error = payload
     },
     [GET_FEED_SUCCESS](state, data) {
       state.isLoading = false
@@ -39,7 +40,8 @@ export default {
           commit(GET_FEED_SUCCESS, res.data)
         }
       } catch (err) {
-        commit(GET_FEED_FAILURE)
+        commit(GET_FEED_FAILURE, {message: err.message})
+        console.log(err.message);
       }
     }
   }

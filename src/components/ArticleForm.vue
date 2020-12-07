@@ -19,7 +19,7 @@
         <el-input type="text" v-model="articleData.tagList" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitForm('articleDataForm')">Publish article</el-button>
+        <el-button type="primary" :disabled="isSubmitting" @click="submitForm('articleDataForm')">Publish article</el-button>
         <el-button @click="resetForm('articleDataForm')">Reset</el-button>
       </el-form-item>
     </el-form>
@@ -37,10 +37,6 @@ export default {
     isSubmitting: {
       type: Boolean,
       required: true
-    },
-    errors: {
-      type: Object,
-      required: false
     }
   },
   data() {
@@ -73,14 +69,13 @@ export default {
       this.$refs[formName].validate((valid) => {
           if (valid) {
             const form = {
-              title: this.articleData.title,
-              description: this.articleData.description,
-              body: this.articleData.body,
-              tagList: this.articleData.tagList,
+              title: this.articleData.title.trim(),
+              description: this.articleData.description.trim(),
+              body: this.articleData.body.trim(),
+              tagList: this.articleData.tagList.trim() ? this.articleData.tagList.trim().split(' ') : []
             }
             this.$emit('submitArticle', form)
           } else {
-            console.log('error submit!!');
             return false;
           }
         });

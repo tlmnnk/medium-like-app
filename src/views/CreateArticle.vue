@@ -3,7 +3,6 @@
     <div class="article__form container">
       <ArticleForm  
         :initValues="initValues"
-        :errors="errors"
         :isSubmitting="isSubmitting"
         @submitArticle="submitArticle"
         />
@@ -12,6 +11,7 @@
 </template>
 
 <script>
+import {mapGetters, mapActions} from 'vuex'
 import ArticleForm from '../components/ArticleForm'
 
 export default {
@@ -25,13 +25,16 @@ export default {
       description: '',
       body: '',
       tagList: []
-    },
-    errors: null,
-    isSubmitting: ''
+    }
   }),
+  computed: {
+    ...mapGetters('createArticle', ['isSubmitting', 'serverValiationErrors'])
+  },
   methods: {
-    submitArticle(data) {
-      console.log('subbmit article', data);
+    ...mapActions('createArticle', ['createArticle']),
+    async submitArticle(data) {
+      const res = await this.createArticle({articleInput: data})
+      this.$router.push({name: 'article', params:{slug: res.slug}})
     }
   }
 }

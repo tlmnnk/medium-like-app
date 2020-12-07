@@ -1,15 +1,18 @@
 <template>
-  <div>{{message}}</div>
+<div>
+  <div>Error: {{error.message}}</div>
+  <div>Please try again later</div>
+</div>
 </template>
 
 <script>
 export default {
   name: 'ErrorMessage',
   props: {
-    message: {
-      type: String,
+    error: {
+      type: Object,
       requied: false,
-      default: 'Something went wrong...'
+      default: () => ({ message: 'Something went wrong...' })
     }
   }
 }

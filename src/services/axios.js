@@ -1,7 +1,9 @@
 import axios from 'axios'
 import LocalStorageAdapter from '../helpers/localStorageAdapter'
 
-axios.defaults.baseURL = 'https://conduit.productionready.io/api'
+const baseURL = 'https://conduit.productionready.io/api'
+
+axios.defaults.baseURL = baseURL
 
 axios.interceptors.request.use(config => {
   const token = LocalStorageAdapter.get('jwtToken')

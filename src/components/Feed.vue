@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="error">
-      <ErrorMessage />
+      <ErrorMessage :error="error"/>
     </div>
     <div v-else-if="feedData" class="feed__wrapper">
       <div class="feed-preview" v-for="(feedItem, index) in feedData.articles" :key="index">

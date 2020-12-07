@@ -30,10 +30,11 @@ export default {
     [GET_CURRENTUSER_START](state) {
       state.isLoading = true
     },
-    [GET_CURRENTUSER_FAILURE](state) {
+    [GET_CURRENTUSER_FAILURE](state, payload) {
       state.isLoading = false
       state.isLoggedIn = false
       state.user = null
+      state.errors = payload
     },
     [GET_CURRENTUSER_SUCCESS](state, payload) {
       state.isLoading = false
@@ -76,8 +77,14 @@ export default {
           localStorageAdapter.set('jwtToken', res.data.user.token)
         }
       } catch (error) {
-        console.log(error.response.data.errors)
-        commit(LOGIN_FAILURE, error.response.data.errors)
+        if(error.response) {
+          commit(LOGIN_FAILURE, error.response.data.errors)
+        } else {
+          console.log('login', error)
+          commit(LOGIN_FAILURE, error)
+        }
+        
+        
       }
       commit(TOGGLE_SUBMIT, false)
     },
@@ -89,7 +96,7 @@ export default {
           commit(GET_CURRENTUSER_SUCCESS, res.data.user)
         }
       } catch (err) {
-        commit(GET_CURRENTUSER_FAILURE)
+        commit(GET_CURRENTUSER_FAILURE, { errors: err.message})
       }
     },
   }

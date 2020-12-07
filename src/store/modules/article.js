@@ -43,6 +43,7 @@ export default {
         }
       } catch (err) {
         commit(GET_ARTICLE_FAILURE)
+        console.log(err.response.data);
       }
     },
     async deleteArticle({commit}, {slug}) {

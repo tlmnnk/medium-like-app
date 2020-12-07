@@ -5,10 +5,12 @@
   <div v-if="articleData">
     <div class="banner">
       <div  class="article__wrapper">
-        <h2 class="article__title">{{articleData.author.username}}</h2>
+        <h2 class="article__title">{{articleData.title}}</h2>
         <div class="article__user-block">
           <UserInfoBlock :feedItem="articleData" />
-          <ArticleEditBtn :articleData="articleData"/>
+          <ArticleEditBtn 
+            :articleData="articleData"
+            @editArticle="editArticle"/>
         </div>
       </div>
     </div>
@@ -37,7 +39,10 @@ export default {
     ...mapGetters('article', ['articleData', 'error', 'isLoading'])
   },
   methods: {
-    ...mapActions('article', ['fetchArticle'])
+    ...mapActions('article', ['fetchArticle']),
+    editArticle() {
+      console.log('helloooooololo');
+    }
   },
   mounted() {
     this.fetchArticle({slug: this.$route.params.slug})

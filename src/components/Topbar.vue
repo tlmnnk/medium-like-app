@@ -5,8 +5,8 @@
       <el-menu-item index="globalFeed">
          <router-link class="nav__link" to="/"><i class="el-icon-s-home"></i>Home</router-link>
       </el-menu-item>
-        <el-menu-item index="Newpost">
-          <router-link class="nav__link" to="/newpost"><i class="el-icon-edit"></i>New Article</router-link>
+        <el-menu-item index="createArticle">
+          <router-link class="nav__link" :to="{name: 'createArticle'}"><i class="el-icon-edit"></i>New Article</router-link>
         </el-menu-item>
         <el-menu-item index="Settings">
           <router-link class="nav__link" to="/settings"><i class="el-icon-setting"></i>Settings</router-link>

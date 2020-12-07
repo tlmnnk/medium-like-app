@@ -10,6 +10,7 @@ import Settings from  '../views/Settings.vue'
 import YourFeed from '../views/YourFeed.vue'
 import TagFeed from '../views/TagFeed.vue'
 import Article from '../views/Article.vue'
+import CreateArticle from '../views/CreateArticle.vue'
 
 Vue.use(VueRouter)
 
@@ -32,7 +33,7 @@ const routes = [
   {
     path: '/article/new',
     name: 'createArticle',
-    component: Globalfeed
+    component: CreateArticle
   },
   {
     path: '/article/:slug',

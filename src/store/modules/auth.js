@@ -53,7 +53,8 @@ export default {
     getErrors: ({ errors }) => errors,
     getLogin: ({ user }) => user.username,
     getIsLoggedIn: ({ isLoggedIn }) => isLoggedIn,
-    isAnonim: ({ isLoggedIn }) => isLoggedIn === false
+    isAnonim: ({ isLoggedIn }) => isLoggedIn === false,
+    currentUser: ({ user }) => user
   },
   actions: {
     toggleRegStart({ commit }, payload) {

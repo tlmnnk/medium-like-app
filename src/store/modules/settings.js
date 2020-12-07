@@ -3,7 +3,7 @@ import mutations from '../mutations'
 const {UPDATE_CURRENTUSER_START, UPDATE_CURRENTUSER_FAILURE, UPDATE_CURRENTUSER_SUCCESS } = mutations;
 
 export default {
-  namaspaced: true,
+  namespaced: true,
   state: {
     isSubmitting: false,
     validationErrors: null

@@ -20,7 +20,6 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" :disabled="isSubmitting" @click="submitForm('articleDataForm')">Publish article</el-button>
-        <el-button @click="resetForm('articleDataForm')">Reset</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -80,9 +79,6 @@ export default {
           }
         });
       
-    },
-    resetForm(formName) {
-      this.$refs[formName].resetFields()
     }
   }
 }

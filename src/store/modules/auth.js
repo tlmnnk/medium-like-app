@@ -4,7 +4,8 @@ import localStorageAdapter from '../../helpers/localStorageAdapter'
 
 const { TOGGLE_SUBMIT, REGISTER_SUCCESS, REGISTER_FAILURE, 
   LOGIN_SUCCESS, LOGIN_FAILURE, GET_CURRENTUSER_START, 
-  GET_CURRENTUSER_FAILURE, GET_CURRENTUSER_SUCCESS } = mutations;
+  GET_CURRENTUSER_FAILURE, GET_CURRENTUSER_SUCCESS,
+  UPDATE_CURRENTUSER_START, UPDATE_CURRENTUSER_FAILURE, UPDATE_CURRENTUSER_SUCCESS } = mutations;
 
 export default {
   namespaced: true,
@@ -40,7 +41,12 @@ export default {
       state.isLoading = false
       state.isLoggedIn = true
       state.user = payload
-    }
+    },
+    [UPDATE_CURRENTUSER_START]() {},
+    [UPDATE_CURRENTUSER_FAILURE]() {},
+    [UPDATE_CURRENTUSER_SUCCESS](state, payload) {
+      state.user = payload
+    },
   },
   getters: {
     isSubmitting: ({ isSubmitting }) => isSubmitting,
@@ -99,5 +105,17 @@ export default {
         commit(GET_CURRENTUSER_FAILURE, { errors: err.message})
       }
     },
+    async updateCurrentuser({commit}, {userInput}) {
+      commit(UPDATE_CURRENTUSER_START)
+      try {
+        const res = await authApi.updateCurrentuser(userInput)
+        if (res.status === 200) {
+          console.log(res.data.user);
+          commit(UPDATE_CURRENTUSER_SUCCESS, res.data.user)
+        }
+      } catch (err) {
+        commit(UPDATE_CURRENTUSER_FAILURE, err.response.data.errors)
+      }
+    }
   }
 }

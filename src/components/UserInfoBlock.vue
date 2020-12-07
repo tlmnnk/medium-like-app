@@ -36,7 +36,7 @@ export default {
   align-items: flex-start;
 }
 .feed-item__userblock {
-  width: 120px;
+  min-width: 120px;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -24,7 +24,9 @@
             <p>read more...</p>
           </router-link>
         </div>
-        <div class="feed-item__tags">TAGS</div>
+        <div class="feed-item__tags">
+          <ArticleTags v-if="feedItem.tagList.length" :tags="feedItem.tagList"/>
+        </div>
         <div class="divider"></div>
       </div>
       <Pagination
@@ -41,17 +43,20 @@
 <script>
 import { Loading } from 'element-ui';
 import {mapActions, mapGetters} from 'vuex'
+import {LIMIT} from '../helpers/vars'
 import Pagination from '../components/Pagination'
 import ErrorMessage from '../components/ErrorMessage'
 import UserInfoBlock from '../components/UserInfoBlock'
-import {LIMIT} from '../helpers/vars'
+import ArticleTags from '../components/ArticleTags'
+
 
 export default {
   name: 'Feed',
   components: {
     Pagination,
     ErrorMessage,
-    UserInfoBlock
+    UserInfoBlock,
+    ArticleTags
   },
   props: {
     apiUrl: {
@@ -130,10 +135,11 @@ export default {
   background: #dbe7ff;
 }
 .feed-item__text {
+  margin-left: 50px;
   display: flex;
   flex-direction: column;
   align-items: baseline;
-  margin-left: 50px;
+  overflow: hidden;
 }
 .feed-item__feed-likes {
   margin-top: 10px;

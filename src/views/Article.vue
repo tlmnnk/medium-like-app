@@ -12,7 +12,10 @@
         </div>
       </div>
     </div>
-    <div class="article__body">{{articleData.body}}</div>
+    <div class="article__body-block">
+      <div class="article__body">{{articleData.body}}</div>
+      <ArticleTags v-if="articleData.tagList.length" :tags="articleData.tagList"/>
+    </div>
   </div>
   </div>
 </template>
@@ -21,12 +24,14 @@
 import {mapGetters, mapActions} from 'vuex'
 import UserInfoBlock from '../components/UserInfoBlock'
 import ArticleEditBtn from '../components/ArticleEditBtn'
+import ArticleTags from '../components/ArticleTags'
 
 export default {
   name: 'Article',
   components: {
     UserInfoBlock,
-    ArticleEditBtn
+    ArticleEditBtn,
+    ArticleTags
   },
   computed: {
     ...mapGetters('article', ['articleData', 'error', 'isLoading'])
@@ -44,8 +49,9 @@ export default {
 </script>
 
 <style>
-.article__wrapper {
-  padding-left: 30px;
+.article__wrapper, .article__body-block {
+  padding: 0 30px;
+  overflow: hidden;
 }
 .article__title {
   text-align: left;
@@ -61,6 +67,14 @@ export default {
 }
 .article__buttons>button {
   background: transparent;
+}
+.article__body, .article__tag {
+  margin-top: 40px;
+  font-size: 24px;
+  text-align: left;
+}
+.article__tag {
+  margin-top: 20px;
 }
 
 </style>

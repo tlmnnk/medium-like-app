@@ -8,11 +8,6 @@
         <div class="feed-item__feed-info">
          <UserInfoBlock :feedItem="feedItem"/>
          <AddToFavorite :feedItem="toFavorites(feedItem)" />
-          <div class="feed-item__feed-likes">
-            <el-badge :value="feedItem.favoritesCount" class="item">
-              <el-button size="small"><i class="el-icon-star-off"></i></el-button>
-            </el-badge>
-          </div>
         </div>
         <div class="feed-item__text">
           <router-link class="feed-item__title" :to="{name: 'article', params: {slug: feedItem.slug}}">

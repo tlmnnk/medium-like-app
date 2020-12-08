@@ -1,6 +1,6 @@
 import axios from './axios'
 
-const favoriteUrl = slug => `/article/${slug}/favorite`
+const favoriteUrl = slug => `/articles/${slug}/favorite`
 
 const addToFavorites = slug => {
   const url = favoriteUrl(slug)

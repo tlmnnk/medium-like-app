@@ -76,7 +76,7 @@ export default {
         const res = await authApi.register({ username, email, password })
         if (res.status === 200) {
           commit(REGISTER_SUCCESS, res.data.user)
-          localStorageAdapter.set('jwtToken', res.data.user.token)
+          localStorageAdapter.set(JWT_TOKEN_NAME, res.data.user.token)
           console.log(res.data.user);
         }
       } catch (error) {

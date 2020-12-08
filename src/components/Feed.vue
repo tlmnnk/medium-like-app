@@ -7,6 +7,7 @@
       <div class="feed-preview" v-for="(feedItem, index) in feedData.articles" :key="index">
         <div class="feed-item__feed-info">
          <UserInfoBlock :feedItem="feedItem"/>
+         <AddToFavorite :feedItem="toFavorites(feedItem)" />
           <div class="feed-item__feed-likes">
             <el-badge :value="feedItem.favoritesCount" class="item">
               <el-button size="small"><i class="el-icon-star-off"></i></el-button>
@@ -48,6 +49,7 @@ import Pagination from '../components/Pagination'
 import ErrorMessage from '../components/ErrorMessage'
 import UserInfoBlock from '../components/UserInfoBlock'
 import ArticleTags from '../components/ArticleTags'
+import AddToFavorite from '../components/AddToFavorite'
 
 
 export default {
@@ -56,7 +58,8 @@ export default {
     Pagination,
     ErrorMessage,
     UserInfoBlock,
-    ArticleTags
+    ArticleTags,
+    AddToFavorite
   },
   props: {
     apiUrl: {
@@ -104,6 +107,13 @@ export default {
   },
   methods: {
     ...mapActions('feed', ['fetchFeed']),
+    toFavorites(feedItem) {
+      return {
+        favoritesCount: feedItem.favoritesCount,
+        favorited: feedItem.favorited,
+        slug: feedItem.slug,
+      }
+    }
   },
   mounted() {
      this.fetchFeed({

@@ -2,62 +2,59 @@
   <div class="settings" v-if="currentUser">
     <h2>Your Settings</h2>
     <div v-if="validationErrors"></div>
-    <el-form :model="updateUserData" status-icon :rules="userRules" ref="userDataForm" label-width="120px">
-      <el-form-item label="image" prop="image">
-        <el-input type="text" v-model="updateUserData.image" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="name" prop="name">
-        <el-input type="text" v-model="updateUserData.name" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="bio" prop="bio">
-        <el-input
-          type="textarea"
-          :rows="2"
-          placeholder="Please input"
-          v-model="updateUserData.bio">
-        </el-input>
-      </el-form-item>
-      <el-form-item label="email" prop="email">
-        <el-input type="text" v-model="updateUserData.email" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="new password" prop="password">
-        <el-input type="text" v-model="updateUserData.password" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" :disabled="isSubmitting" @click="submitForm('userDataForm')">Submit</el-button>
-      </el-form-item>
-    </el-form>
+      <SettingsForm 
+        :updateUserData="currentUser"
+        :isSubmitting="isSubmitting"
+        @submitSettings="submitSettings"/>
+      <div class="divider"></div>
+      <div class="settings__logout">
+        <el-button type="danger" @click="logoutUser">or click here to Logout</el-button>
+      </div>
   </div>
 </template>
 
 <script>
 import {mapGetters, mapActions} from 'vuex'
+import SettingsForm from '../components/SettingsForm'
 
 export default {
   name: 'Settings',
-  data: () => ({
-    updateUserData: {
-      image: '',
-      name: '',
-      bio: '',
-      email: '',
-      password: ''
-    },
-    userRules: {}
-  }),
+  components: {
+    SettingsForm
+  },
   computed: {
-    ...mapGetters('settings', ['isSubmitting', 'validationErrors']),
-    ...mapGetters('auth', ['currentUser'])
+    ...mapGetters('settings', ['validationErrors']),
+    ...mapGetters('auth', ['currentUser', 'isSubmitting']),
+    getUserData() {
+        return {
+        image: this.currentUser.image,
+        username: this.currentUser.username,
+        bio: this.currentUser.bio,
+        email: this.currentUser.email,
+        password: ''
+        }
+      }
   },
   methods: {
-    ...mapActions('auth', ['updateCurrentUser']),
-    submitForm() {
-      console.log(this.updateUserData);
+    ...mapActions('auth', ['updateCurrentuser', 'logout']),
+    submitSettings(data) {
+      console.log('data', data);
+      this.updateCurrentuser({userInput: data})
+    },
+    logoutUser() {
+      this.logout()
+      this.$router.push({name: 'globalFeed'})
     }
   }
 }
 </script>
 
 <style>
-
+.settings__logout {
+  text-align: left;
+  margin-top: 20px;
+}
+.settings__logout .el-button--danger {
+  width: 180px;
+}
 </style>

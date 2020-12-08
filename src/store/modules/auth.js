@@ -1,11 +1,13 @@
 import mutations from '../mutations'
 import authApi from '../../services/auth'
 import localStorageAdapter from '../../helpers/localStorageAdapter'
+import {JWT_TOKEN_NAME} from '../../helpers/vars'
 
 const { TOGGLE_SUBMIT, REGISTER_SUCCESS, REGISTER_FAILURE, 
   LOGIN_SUCCESS, LOGIN_FAILURE, GET_CURRENTUSER_START, 
   GET_CURRENTUSER_FAILURE, GET_CURRENTUSER_SUCCESS,
-  UPDATE_CURRENTUSER_START, UPDATE_CURRENTUSER_FAILURE, UPDATE_CURRENTUSER_SUCCESS } = mutations;
+  UPDATE_CURRENTUSER_START, UPDATE_CURRENTUSER_FAILURE, UPDATE_CURRENTUSER_SUCCESS,
+  LOGOUT } = mutations;
 
 export default {
   namespaced: true,
@@ -42,11 +44,19 @@ export default {
       state.isLoggedIn = true
       state.user = payload
     },
-    [UPDATE_CURRENTUSER_START]() {},
-    [UPDATE_CURRENTUSER_FAILURE]() {},
+    [UPDATE_CURRENTUSER_START](state) {
+      state.isSubmitting = true
+    },
+    [UPDATE_CURRENTUSER_FAILURE](state) {
+      state.isSubmitting = false
+    },
     [UPDATE_CURRENTUSER_SUCCESS](state, payload) {
+      state.isSubmitting = false
       state.user = payload
     },
+    [LOGOUT](state) {
+      state.user = null
+      state.isLoggedIn = false    }
   },
   getters: {
     isSubmitting: ({ isSubmitting }) => isSubmitting,
@@ -81,7 +91,7 @@ export default {
         const res = await authApi.login(creds)
         if (res.status === 200) {
           commit(LOGIN_SUCCESS, res.data.user)
-          localStorageAdapter.set('jwtToken', res.data.user.token)
+          localStorageAdapter.set(JWT_TOKEN_NAME, res.data.user.token)
         }
       } catch (error) {
         if(error.response) {
@@ -109,7 +119,7 @@ export default {
     async updateCurrentuser({commit}, {userInput}) {
       commit(UPDATE_CURRENTUSER_START)
       try {
-        const res = await authApi.updateCurrentuser(userInput)
+        const res = await authApi.updateCurrentUser(userInput)
         if (res.status === 200) {
           console.log(res.data.user);
           commit(UPDATE_CURRENTUSER_SUCCESS, res.data.user)
@@ -117,6 +127,10 @@ export default {
       } catch (err) {
         commit(UPDATE_CURRENTUSER_FAILURE, err.response.data.errors)
       }
+    },
+    logout({commit}) {
+        localStorageAdapter.set(JWT_TOKEN_NAME, '')
+        commit(LOGOUT)    
     }
   }
 }

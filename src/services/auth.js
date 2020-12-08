@@ -13,7 +13,7 @@ const getCurrentUser = () => {
 }
 
 const updateCurrentUser = currenUserInput => {
-  return axios.put('/put', {user: currenUserInput})
+  return axios.put('/user', {user: currenUserInput})
 }
 
 export default {

@@ -5,6 +5,8 @@
       <el-button type="danger" @click="removeArticle">Delete Article</el-button>
     </div>
     <div v-else class="article__buttons">
+      //TODO:
+      // make follow and favorite buttons work
       <el-button plain>
         <i class="el-icon-plus"></i>
         follow {{this.articleData.author.username}}

@@ -12,7 +12,7 @@
           <router-link class="nav__link" to="/settings"><i class="el-icon-setting"></i>Settings</router-link>
          </el-menu-item>
         <el-menu-item index="User">
-         <router-link class="nav__link" :to="{name: 'User', params: {slug: getLogin}}">
+         <router-link class="nav__link" :to="{name: 'UserProfile', params: {slug: getLogin}}">
            <i class="el-icon-user"></i>{{getLogin}}
          </router-link>
         </el-menu-item>

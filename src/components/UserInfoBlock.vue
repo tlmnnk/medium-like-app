@@ -6,7 +6,7 @@
               </el-avatar>
             </div>
             <div class="feed-item__userdata">
-              <router-link :to="{name: 'User', params: {slug: feedItem.author.username}}">{{feedItem.author.username}}</router-link>
+              <router-link :to="{name: 'UserProfile', params: {slug: feedItem.author.username}}">{{feedItem.author.username}}</router-link>
               <p class="feed-item__createdat">{{feedItem.createdAt.slice(0, 10)}}</p>
             </div>
           </div>

@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 import Globalfeed from '../views/Globalfeed.vue'
 import Signup from '../views/Signup.vue'
 import Login from '../views/Login.vue'
-import User from '../views/User.vue'
+import UserProfile from '../views/UserProfile.vue'
 import Newpost from  '../views/Newpost.vue'
 import Settings from  '../views/Settings.vue'
 import YourFeed from '../views/YourFeed.vue'
@@ -58,13 +58,13 @@ const routes = [
   },
   {
     path: '/profile/:slug',
-    name: 'User',
-    component: User
+    name: 'UserProfile',
+    component: UserProfile
   },
   {
     path: '/profile/:slug/favorites',
     name: 'userFavorites',
-    component: User
+    component: UserProfile
   },
   {
     path: '/newpost',

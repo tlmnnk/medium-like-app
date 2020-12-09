@@ -5,16 +5,11 @@
       <el-button type="danger" @click="removeArticle">Delete Article</el-button>
     </div>
     <div v-else class="article__buttons">
-      //TODO:
-      // make follow and favorite buttons work
-      <el-button plain>
-        <i class="el-icon-plus"></i>
-        follow {{this.articleData.author.username}}
-      </el-button>
+      <FollowBtn :userData="articleData.author"/>
       <el-button>
-        <i v-if="this.articleData.favorited" class="el-icon-star-on"></i>
+        <i v-if="articleData.favorited" class="el-icon-star-on"></i>
         <i v-else class="el-icon-star-off"></i>
-        Favorite Article ({{this.articleData.favoritesCount}})
+        Favorite Article ({{articleData.favoritesCount}})
       </el-button>
     </div>
   </div>
@@ -22,9 +17,13 @@
 
 <script>
 import {mapGetters, mapActions} from 'vuex'
+import FollowBtn from '../components/FollowBtn'
 
 export default {
   name: 'ArticleEditBtn',
+  components: {
+    FollowBtn
+  },
   props: {
     articleData: {
       type: Object,

@@ -15,7 +15,7 @@
             <el-button plain @click="editUserProfile"><i class="el-icon-edit"></i> Edit profile</el-button>
           </div>
           <div v-else>
-             <el-button plain @click="followUser"><i class="el-icon-plus"></i> Follow User</el-button>
+             <FollowBtn :userData="userProfileData"/>
           </div>
         </div>
       </div>
@@ -38,15 +38,19 @@
 <script>
 import {mapGetters, mapActions} from 'vuex'
 import Feed from '../components/Feed'
+import FollowBtn from '../components/FollowBtn'
 
 export default {
   name: 'UserProfile',
   components: {
-    Feed
+    Feed,
+    FollowBtn
   },
-  data: () =>({
-    apiUrlValue: ''
-  }),
+  data() { 
+    return {
+      apiUrlValue: '',
+    } 
+  },
   computed: {
     ...mapGetters('userProfile', ['userProfileData', 'isLoading', 'error']),
     ...mapGetters('auth', ['getLogin', 'getIsLoggedIn']),
@@ -84,7 +88,6 @@ export default {
     editUserProfile() {
       this.$router.push({name: 'Settings'})
     },
-    followUser() {},
     handleTabClick(tab) {
       console.log('tab click ======', this.apiUrl);
       switch (tab.$options.propsData.name) {

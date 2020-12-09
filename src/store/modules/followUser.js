@@ -20,7 +20,6 @@ export default {
           await profile.follow(slug)
         }
         commit(FOLLOW_USER_SUCCESS)
-        console.log('ghello');
       } catch (error) {
         console.log(error);
         commit(FOLLOW_USER_FAILURE)

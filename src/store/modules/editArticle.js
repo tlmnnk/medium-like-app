@@ -48,7 +48,6 @@ export default {
       try {
         const res = await articleApi.updateArticle(slug, articleInput)
         if (res.status === 200) {
-          console.log(res.data);
           commit(EDIT_ARTICLE_SUCCESS)
         }
       } catch (err) {

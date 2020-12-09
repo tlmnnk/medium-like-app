@@ -38,7 +38,6 @@ export default {
   methods: {
     ...mapActions('auth', ['updateCurrentuser', 'logout']),
     submitSettings(data) {
-      console.log('data', data);
       this.updateCurrentuser({userInput: data})
     },
     logoutUser() {

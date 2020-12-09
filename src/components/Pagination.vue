@@ -39,7 +39,6 @@ export default {
   methods: {
     pageChangeHandler(value) {
       this.$router.push({path: this.url, query: {page: value}})
-      console.log(value);
     }
   }
 }

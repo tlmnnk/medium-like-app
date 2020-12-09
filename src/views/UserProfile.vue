@@ -89,7 +89,6 @@ export default {
       this.$router.push({name: 'Settings'})
     },
     handleTabClick(tab) {
-      console.log('tab click ======', this.apiUrl);
       switch (tab.$options.propsData.name) {
         case 'My Articles':
           this.isFavaoritesPath && this.$router.push({name: 'UserProfile', params: {slug: this.$route.params.slug}})

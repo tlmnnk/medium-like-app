@@ -85,7 +85,6 @@ export default {
             }
             this.$emit('submitSettings', data)
           } else {
-            console.log('is not valid');
             return false;
           }
         });

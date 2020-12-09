@@ -5,7 +5,6 @@ import Globalfeed from '../views/Globalfeed.vue'
 import Signup from '../views/Signup.vue'
 import Login from '../views/Login.vue'
 import UserProfile from '../views/UserProfile.vue'
-import Newpost from  '../views/Newpost.vue'
 import Settings from  '../views/Settings.vue'
 import YourFeed from '../views/YourFeed.vue'
 import TagFeed from '../views/TagFeed.vue'
@@ -65,11 +64,6 @@ const routes = [
     path: '/profile/:slug/favorites',
     name: 'userProfileFavorites',
     component: UserProfile
-  },
-  {
-    path: '/newpost',
-    name: 'Newpost',
-    component: Newpost
   },
   {
     path: '/settings',

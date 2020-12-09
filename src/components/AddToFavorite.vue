@@ -39,7 +39,6 @@ export default {
   methods: {
     ...mapActions('addToFavorites', ['handleLikeArticle']),
     handleLike() {
-      console.log({isFavorited: this.isFavorited, slug: this.feedItem.slug});
       this.handleLikeArticle({isFavorited: this.isFavorited, slug: this.feedItem.slug})
       if (this.isFavorited) {
         this.favoritesCount -= 1
@@ -54,7 +53,7 @@ export default {
 
 <style>
 .favorite-block {
-  margin-right: 20px;
+  margin-left: 20px;
   display: inline-block;
 }
 

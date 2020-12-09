@@ -38,12 +38,10 @@ export default {
       try {
         const res = await articleApi.getArticle(slug)
         if (res.status === 200) {
-          console.log(res.data);
           commit(GET_ARTICLE_SUCCESS, res.data.article)
         }
       } catch (err) {
         commit(GET_ARTICLE_FAILURE)
-        console.log(err.response.data);
       }
     },
     async deleteArticle({commit}, {slug}) {

@@ -12,7 +12,6 @@ export default {
   },
   actions: {
     async handleLikeArticle({commit}, {slug, isFavorited}) {
-      console.log('hello');
       commit(ADD_TO_FAVORITES_START)
       try {
         if(isFavorited) {

@@ -31,7 +31,6 @@ export default {
       try {
         const res = await articleApi.createArticle(articleInput)
         if (res.status === 200) {
-          console.log(res.data);
           commit(CREATE_ARTICLE_SUCCESS)
           return res.data.article
         }

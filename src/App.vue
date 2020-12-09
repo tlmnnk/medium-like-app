@@ -14,7 +14,7 @@ import { mapActions } from 'vuex'
 export default {
   name: 'App',
   components: {
-    Topbar
+    Topbar,
   },
   methods: {
     ...mapActions('auth', ['getCurrentUser'])
@@ -26,6 +26,10 @@ export default {
 </script>
 
 <style>
+body {
+  padding: 0;
+  margin: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

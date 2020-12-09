@@ -18,6 +18,7 @@
       <div class="article__body">{{articleData.body}}</div>
       <ArticleTags v-if="articleData.tagList.length" :tags="articleData.tagList"/>
     </div>
+    <div class="divider"></div>
   </div>
   </div>
 </template>

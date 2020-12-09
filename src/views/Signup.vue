@@ -63,7 +63,6 @@ export default {
     async onSubmit(formName) {
       this.isFormValid = true
         this.$refs[formName].validate((valid) => {
-          console.log(valid);
           if (valid) {
             // this.register(this.signup)
           } else {

@@ -34,7 +34,6 @@ export default {
       try {
         const res = await feedApi.getTags()
         if (res.status === 200) {
-          console.log(res.data)
           commit(GET_TAGS_SUCCESS, res.data.tags)
         }
       } catch (err) {

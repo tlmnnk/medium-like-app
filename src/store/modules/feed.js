@@ -37,12 +37,10 @@ export default {
       try {
         const res = await feedApi.getFeed(apiUrl, limit, offset)
         if (res.status === 200) {
-          console.log(res.data);
           commit(GET_FEED_SUCCESS, res.data)
         }
       } catch (err) {
         commit(GET_FEED_FAILURE, {message: err.message})
-        console.log(err.message);
       }
     }
   }

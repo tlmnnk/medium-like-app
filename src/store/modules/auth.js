@@ -64,7 +64,8 @@ export default {
     getLogin: ({ user }) => user.username,
     getIsLoggedIn: ({ isLoggedIn }) => isLoggedIn,
     isAnonim: ({ isLoggedIn }) => isLoggedIn === false,
-    currentUser: ({ user }) => user
+    currentUser: ({ user }) => user,
+    isLoading: ({ isLoading }) => isLoading
   },
   actions: {
     toggleRegStart({ commit }, payload) {
@@ -77,10 +78,8 @@ export default {
         if (res.status === 200) {
           commit(REGISTER_SUCCESS, res.data.user)
           localStorageAdapter.set(JWT_TOKEN_NAME, res.data.user.token)
-          console.log(res.data.user);
         }
       } catch (error) {
-        console.log(error.response.data.errors);
         commit(REGISTER_FAILURE, error.response.data.errors)
       }
       commit(TOGGLE_SUBMIT, false)
@@ -97,7 +96,6 @@ export default {
         if(error.response) {
           commit(LOGIN_FAILURE, error.response.data.errors)
         } else {
-          console.log('login', error)
           commit(LOGIN_FAILURE, error)
         }
         

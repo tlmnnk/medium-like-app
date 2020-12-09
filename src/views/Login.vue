@@ -36,8 +36,6 @@ export default {
       email: '',
       password: ''
     },
-    // TODO:
-    // add form rules
     loginFormRules: {
       email: [
         { required: true, type: 'email', message: 'Please input a valid email', trigger: ['blur', 'change'] }
@@ -55,7 +53,6 @@ export default {
     ...mapActions('auth', ['login']),
     async submitForm(formName) {
       this.$refs[formName].validate(valid => {
-         console.log(valid);
           if (valid) {
             // this.register(this.signup)
           } else {

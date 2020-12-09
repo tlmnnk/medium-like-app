@@ -26,6 +26,7 @@
         <div class="divider"></div>
       </div>
       <Pagination
+      v-if="isPagination"
       :total="feedData.articlesCount" 
       :pageSize="articlesPerPage"
       :currentPage="currentPage"
@@ -89,6 +90,9 @@ export default {
     },
     offset() {
       return ((this.currentPage*LIMIT)-LIMIT)
+    },
+    isPagination() {
+      return this.feedData.articlesCount > LIMIT
     }
   },
   watch: {

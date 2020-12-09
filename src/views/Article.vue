@@ -1,5 +1,5 @@
 <template>
-  
+<div class="container">
 <div class="article">
   <div v-if="isLoading">Loading...</div>
   <div v-if="articleData">
@@ -21,6 +21,7 @@
     <div class="divider"></div>
   </div>
   </div>
+</div>
 </template>
 
 <script>

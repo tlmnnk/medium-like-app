@@ -19,7 +19,7 @@
           </div>
         </div>
       </div>
-      <div class="user-profile__feed feed__block">
+      <div class="user-profile__feed feed__block container">
         <div class="user-profile__fedd-toggler">
           <el-tabs v-model="getActiveTab" @tab-click="handleTabClick">
             <el-tab-pane label="My Articles" name="My Articles"></el-tab-pane>

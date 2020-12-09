@@ -7,7 +7,7 @@
         :isSubmitting="isSubmitting"
         @submitSettings="submitSettings"/>
       <div class="divider"></div>
-      <div class="settings__logout">
+      <div class="settings__logout container">
         <el-button type="danger" @click="logoutUser">or click here to Logout</el-button>
       </div>
   </div>

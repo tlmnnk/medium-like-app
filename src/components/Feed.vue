@@ -3,7 +3,7 @@
     <div v-if="error">
       <ErrorMessage :error="error"/>
     </div>
-    <div v-else-if="feedData" class="feed__wrapper">
+    <div v-else-if="feedData" class="feed__wrapper container">
       <div class="feed-preview" v-for="(feedItem, index) in feedData.articles" :key="index">
         <div class="feed-item__feed-info">
          <UserInfoBlock :feedItem="feedItem"/>

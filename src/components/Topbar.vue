@@ -1,5 +1,6 @@
 <template>
-  <nav class="nav">
+<div class="container">
+ <nav class="nav">
     <router-link class="nav__brand" :to="{name: 'globalFeed'}"><h1>Medium-like-app</h1></router-link>
     <div v-if="getIsLoggedIn">
       <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
@@ -33,6 +34,7 @@
       </el-menu>
     </div>
   </nav>
+</div>
 </template>
 
 <script>

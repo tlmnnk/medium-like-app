@@ -64,6 +64,7 @@ export default {
   height: 100%;
   text-decoration: none;
   color: rgb(25, 131, 252);
+  cursor: pointer;
 }
 .tags__loading {
   widows: 100%;

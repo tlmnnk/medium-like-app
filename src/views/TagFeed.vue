@@ -1,6 +1,7 @@
 <template>
   <div class="home feed tagFeed">
     <Banner />
+    <div class="container">
       <el-row :gutter="20">
         <el-col :span="18">
           <FeedToggler :tagName="tagName" :activeTab="activeTab"/>
@@ -10,7 +11,7 @@
             <Tags />
           </el-col>
       </el-row>
-    
+    </div>
   </div>
 </template>
 

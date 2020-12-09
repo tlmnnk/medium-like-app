@@ -1,7 +1,8 @@
 <template>
   <div class="home feed globalFeeed">
     <Banner />
-          <el-row :gutter="20">
+    <div class="container">
+      <el-row :gutter="20">
             <el-col :span="18">
               <div class="feed__block">
                 <FeedToggler :activeTab="activeTab"/>
@@ -12,7 +13,7 @@
               <Tags />
             </el-col>
           </el-row>
-    
+    </div>
   </div>
 </template>
 

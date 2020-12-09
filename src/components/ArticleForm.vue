@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="article__form">
     <el-form :model="articleData" status-icon :rules="articleRules" ref="articleDataForm" label-width="120px">
       <el-form-item label="title" prop="title">
         <el-input type="text" v-model="articleData.title" autocomplete="off"></el-input>
@@ -85,5 +85,7 @@ export default {
 </script>
 
 <style>
-
+.article__form {
+  margin-top: 40px;
+}
 </style>

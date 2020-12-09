@@ -3,8 +3,10 @@
     <Banner />
           <el-row :gutter="20">
             <el-col :span="18">
-              <FeedToggler :activeTab="activeTab"/>
-              <Feed :api-url="apiUrl"/>
+              <div class="feed__block">
+                <FeedToggler :activeTab="activeTab"/>
+                <Feed :api-url="apiUrl"/>
+              </div>
             </el-col>
             <el-col :span="6">
               <Tags />

@@ -63,7 +63,7 @@ const routes = [
   },
   {
     path: '/profile/:slug/favorites',
-    name: 'userFavorites',
+    name: 'userProfileFavorites',
     component: UserProfile
   },
   {

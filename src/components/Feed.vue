@@ -69,7 +69,7 @@ export default {
   updated() {
     if (this.isLoading) {
       this.loadingInstance = Loading.service({
-        target: '.feed',
+        target: '.feed__block',
         fullscreen: 'false'
         });
     } else {
@@ -93,6 +93,13 @@ export default {
   },
   watch: {
     currentPage() {
+      this.fetchFeed({
+        apiUrl: this.apiUrl,
+        limit: LIMIT, 
+        offset: this.offset
+      })
+    },
+    apiUrl() {
       this.fetchFeed({
         apiUrl: this.apiUrl,
         limit: LIMIT, 

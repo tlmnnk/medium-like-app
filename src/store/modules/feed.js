@@ -13,6 +13,7 @@ export default {
   },
   mutations: {
     [GET_FEED_START](state) {
+      state.error = null
       state.isLoading = true
       state.feedData = null
     },

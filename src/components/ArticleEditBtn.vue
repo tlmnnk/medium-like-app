@@ -6,11 +6,7 @@
     </div>
     <div v-else class="article__buttons">
       <FollowBtn :userData="articleData.author"/>
-      <el-button>
-        <i v-if="articleData.favorited" class="el-icon-star-on"></i>
-        <i v-else class="el-icon-star-off"></i>
-        Favorite Article ({{articleData.favoritesCount}})
-      </el-button>
+      <AddToFavorite :feedItem="articleData" :isArticle="true" />
     </div>
   </div>
 </template>
@@ -18,11 +14,13 @@
 <script>
 import {mapGetters, mapActions} from 'vuex'
 import FollowBtn from '../components/FollowBtn'
+import AddToFavorite from '../components/AddToFavorite'
 
 export default {
   name: 'ArticleEditBtn',
   components: {
-    FollowBtn
+    FollowBtn,
+    AddToFavorite
   },
   props: {
     articleData: {

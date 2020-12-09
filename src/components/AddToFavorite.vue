@@ -1,11 +1,17 @@
 <template>
-  <div class="feed-item__feed-likes">
-    <el-badge :value="favoritesCount" class="item" >
-      <el-button size="small" @click="handleLike">
-        <i v-if="isFavorited" class="el-icon-star-on"></i>
-        <i v-else class="el-icon-star-off"></i>
+  <div class="favorite-block">
+    <el-button v-if="isArticle" @click="handleLike" class="like__btn">
+        <i v-if="isFavorited" class="el-icon-star-on"> Unfavorite Article ({{favoritesCount}})</i>
+        <i v-else class="el-icon-star-off"> Favorite Article ({{favoritesCount}})</i>       
+      </el-button>
+      <div v-else class="feed-item__feed-likes">
+        <el-badge :value="favoritesCount" class="item" >
+          <el-button size="small" @click="handleLike">
+          <i v-if="isFavorited" class="el-icon-star-on"></i>
+          <i v-else class="el-icon-star-off"></i>
         </el-button>
-    </el-badge>
+      </el-badge>
+      </div>
   </div>
 </template>
 
@@ -19,6 +25,10 @@ export default {
       type: Object,
       required: true
     },
+    isArticle: {
+      type: Boolean,
+      required: false
+    }
   },
   data () {
     return {
@@ -43,5 +53,9 @@ export default {
 </script>
 
 <style>
+.favorite-block {
+  margin-right: 20px;
+  display: inline-block;
+}
 
 </style>

@@ -1,5 +1,8 @@
 # medium-like-app
 
+Deploy [https://gifted-davinci-fea08d.netlify.app/](https://gifted-davinci-fea08d.netlify.app/).
+
+
 ## Project setup
 ```
 npm install
